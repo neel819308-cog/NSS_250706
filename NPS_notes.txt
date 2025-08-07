@@ -9,4 +9,37 @@ lsof -i:8080
 kill -9 60951
 """
 
-#
+# confirm the version of python being used
+python --version
+python3 --version
+
+
+# copy and make .env from .env.example - not sure it is needed if you are createing a venv anyway
+source venv/bin/activate && export PYTHONPATH=`pwd`
+
+# to confirm the venv you are 
+which python
+echo \$VIRTUAL_ENV
+
+pip install -r requirements.txt
+
+#run the code and bring up the gui interface
+python -m run
+
+
+# coded_tools > agent_network_designer > get_agent_network_hocon.py L37
+    '        "model_name": "azure-gpt-4o",\n'
+    '        "openai_api_key": "cef2188708004aae9f4a3cbfdd5361d6",\n'
+    '        "openai_api_version": "2025-01-01-preview",\n'
+    '        "azure_endpoint": "https://aniljohn-gpt4.openai.azure.com",\n'
+    '        "deployment_name": "Neel-gpt-4o",\n'
+    "    },\n"
+
+# registries > agent_network_designer.hocon  L13
+     "llm_config": {
+        "model_name": "azure-gpt-4o",
+        "openai_api_key": "cef2188708004aae9f4a3cbfdd5361d6"
+        "openai_api_version": "2025-01-01-preview",
+        "azure_endpoint": "https://aniljohn-gpt4.openai.azure.com",
+        "deployment_name": "Neel-gpt-4o"
+

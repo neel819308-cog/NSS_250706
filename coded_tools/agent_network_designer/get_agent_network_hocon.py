@@ -34,7 +34,11 @@ HOCON_HEADER_START = (
     '# so running the script from elsewhere may result in file not found errors.\n'
     'include "registries/aaosa.hocon"\n'
     '    "llm_config": {\n'
-    '        "model_name": "gpt-4o",\n'
+  '        "model_name": "azure-gpt-4o",\n'
+    '        "openai_api_key": "cef2188708004aae9f4a3cbfdd5361d6",\n'
+    '        "openai_api_version": "2025-01-01-preview",\n'
+    '        "azure_endpoint": "https://aniljohn-gpt4.openai.azure.com",\n'
+    '        "deployment_name": "Neel-gpt-4o",\n'
     "    },\n"
     '    "commondefs": {\n'
     '        "replacement_strings": {\n'
