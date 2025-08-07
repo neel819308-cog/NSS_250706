@@ -1,0 +1,12 @@
+"""
+Azure OpenAI Connection Test Script
+Tests connectivity to Azure OpenAI service with various configuration options.
+
+Kil open ports:
+lsof -i:4173 
+lsof -i:30011
+lsof -i:8080
+kill -9 60951
+"""
+
+#
