@@ -20,6 +20,8 @@ source venv/bin/activate && export PYTHONPATH=`pwd`
 ## to confirm the venv you are 
 which python
 echo \$VIRTUAL_ENV
+#to change to a virtual environment
+source venv/bin/activate 
 
 pip install -r requirements.txt
 
