@@ -9,7 +9,11 @@
 #
 {
     "llm_config": {
-        "model_name": "gpt-4o",
+        "model_name": "azure-gpt-4o",
+        "openai_api_key": "cef2188708004aae9f4a3cbfdd5361d6"
+        "openai_api_version": "2025-01-01-preview",
+        "azure_endpoint": "https://aniljohn-gpt4.openai.azure.com",
+        "deployment_name": "Neel-gpt-4o",
     },
     "commondefs": {
         "replacement_strings": {
@@ -63,7 +67,7 @@ the inquiry, if any. or if it is being asked to respond to the inquiry.
     },
     "tools": [
         {
-            "name": "Airline 360 Assistant",
+            "name": "ING FrontMan",
 
             # Note that there are no parameters defined for this guy's "function" key.
             # This is the primary way to identify this tool as a front-man,
@@ -86,7 +90,7 @@ tools or agents. If there are any requirements that need user input, ask them on
 with clear examples of the choices available.
 Provide the users with necessary URLs to help them with their query.
             """,
-            "tools": ["Baggage_Handling"]
+            "tools": ["ING Bag man"]
         },
         {
             "name": "Baggage_Handling",
