@@ -155,4 +155,7 @@
     #     python -m run --server-grpc-port 30012 --server-http-port 8081 --nsflow-port 4174
     "agent_network_architect.hocon": false,
     "news_sentiment_analysis.hocon": false,
+
+    "ING_0819.hocon": true,
+
 }
