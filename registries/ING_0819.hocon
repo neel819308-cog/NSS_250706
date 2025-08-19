@@ -65,6 +65,11 @@ the inquiry, if any. or if it is being asked to respond to the inquiry.
             "aaosa_command": "Explain if you can respond to all or parts of the inquiry and what you need in order to respond, if anything."
         }
     },
+
+
+
+
+
     "tools": [
         {
             "name": "ING FrontMan",
@@ -90,10 +95,119 @@ tools or agents. If there are any requirements that need user input, ask them on
 with clear examples of the choices available.
 Provide the users with necessary URLs to help them with their query.
             """,
-            "tools": ["ING Bag man"]
+            "tools": ["1 Requirement Ingestion"]
         },
+
         {
-            "name": "Baggage_Handling",
+            "name": "1 Requirement Ingestion",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is Baggage_Handling.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["2. Technical Design"]
+        },
+
+         {
+            "name": "2. Technical Design",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is Baggage_Handling.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["2a Architecture Sub","2b Data Flow Sub","2c Integration Sub","2d Validation Rules Sub"]
+        },
+
+        {
+            "name": "2a. Technical Design",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is Baggage_Handling.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["3. Code Generation"]
+        }
+
+        {
+            "name": "2b. Technical Design",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is Baggage_Handling.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["3. Code Generation"]
+        }
+
+        {
+            "name": "2c. Technical Design",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is Baggage_Handling.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["3. Code Generation"]
+        }
+
+        {
+            "name": "2d. Technical Design",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is Baggage_Handling.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["3. Code Generation"]
+        }
+
+        {
+            "name": "3. Code Generation",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -108,6 +222,8 @@ retrieving applicable policies, and ensuring consistent application across scena
             """,
             "command": "aaosa_command",
             "tools": []
-        },
+        }
+
+
     ]
 }
