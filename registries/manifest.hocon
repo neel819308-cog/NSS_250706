@@ -157,6 +157,6 @@
     "news_sentiment_analysis.hocon": false,
 
     "ING_0819.hocon": true,
-    "ING_0920_temp.hocon": true,
+    "ING_0920.hocon": true,
 
 }
