@@ -103,7 +103,7 @@ Provide the users with necessary URLs to help them with their query.
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is Baggage_Handling.
+The name of this app is 1 Requirement Ingestion.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -116,12 +116,12 @@ retrieving applicable policies, and ensuring consistent application across scena
             "tools": ["2. Technical Design"]
         },
 
-         {
+        {
             "name": "2. Technical Design",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is Baggage_Handling.
+The name of this app is 2. Technical Design.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -135,11 +135,11 @@ retrieving applicable policies, and ensuring consistent application across scena
         },
 
         {
-            "name": "2a. Technical Design",
+            "name": "2a. Architecture Sub",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is Baggage_Handling.
+The name of this app is 2a. Architecture Sub.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -153,11 +153,11 @@ retrieving applicable policies, and ensuring consistent application across scena
         }
 
         {
-            "name": "2b. Technical Design",
+            "name": "2b. Data Flow Sub",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is Baggage_Handling.
+The name of this app is 2b. Data Flow Sub.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -171,11 +171,11 @@ retrieving applicable policies, and ensuring consistent application across scena
         }
 
         {
-            "name": "2c. Technical Design",
+            "name": "2c. Integration Sub",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is Baggage_Handling.
+The name of this app is 2c. Integration Sub.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -189,11 +189,11 @@ retrieving applicable policies, and ensuring consistent application across scena
         }
 
         {
-            "name": "2d. Technical Design",
+            "name": "2d. Validation Rules Sub",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is Baggage_Handling.
+The name of this app is 2d. Validation Rules Sub.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -211,7 +211,7 @@ retrieving applicable policies, and ensuring consistent application across scena
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is Baggage_Handling.
+The name of this app is 3. Code Generation.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
