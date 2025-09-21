@@ -60,9 +60,10 @@ Do NOT answer before you've called your tools.
                         "mode": {
                             "type": "string",
                             "description": """
-indicates whether the agent is being asked to determine if the inquiry belongs to it
-in its entirety or in part. or if it is being asked to provide requirements to fulfill
-the inquiry, if any. or if it is being asked to respond to the inquiry.
+Indicates whether the agent is being asked to determine if the inquiry belongs to it
+in its entirety or in part. Or if it is being asked to provide requirements to fulfill
+the inquiry, if any. Or if it is being asked to respond to the inquiry. 
+Or if we are sending it a response to what it requires, or a follow up.
                             """
                         }
                     },
@@ -92,17 +93,23 @@ the inquiry, if any. or if it is being asked to respond to the inquiry.
                 # The description acts as an initial prompt. 
 
                 "description": """
-                Your name is Airline 360 Assistant. You're in charge of Airline's help desk, answering 
-                cutomers' questions about Airline policies, procedures, and resources that they can access.
+                Your name is Digital Assistant to a development team that owns all IT infrastructure 
+                at the ING bank. The team you support does NOT interact with customers directly 
+                nor does it connect directly with any stakeholdeers outside of the IT team. 
+                A step-by-step approach for the vendor to leverage Agentic AI in designing, building, and
+                deploying a MiFIR reporting solution. Each step focuses on breaking down complex regulatory
+                and technical requirements into actionable tasks, 
+                ensuring both compliance and engineering excellence.
                 """
             },
             "instructions": """
 {instructions_prefix}
-You are the top-level agent responsible for handling all policy-related inquiries.
+You are the top-level agent responsible for handling all technical & regulatory documentation related inquiries.
 {aaosa_instructions}
 When interacting with the user, act as the single point of interaction. No need to mention the other 
 tools or agents. If there are any requirements that need user input, ask them one at a time, 
 with clear examples of the choices available.
+
 Provide the users with necessary URLs to help them with their query.
             """,
             "tools": ["1 Requirement Ingestion"]
@@ -114,12 +121,11 @@ Provide the users with necessary URLs to help them with their query.
             "instructions": """
 {instructions_prefix}
 The name of this app is 1 Requirement Ingestion.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+Purpose: Retrieve and summarise MiFIR reporting obligations and technical requirements.
+Actions:
+- Use Agentic AI to fetch AFM MiFIR rules, mandatory fields, XML schema, and validation rules.
+- Output a structured requirements document, per asset class
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -132,17 +138,27 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 2. Technical Design.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+Purpose: Translate requirements into a technical and architectural design.
+Output: Technical design document and diagrams and relay and 
+share to sub agents to define the requirements. These agents are constrcutred with the follow focus and remit:
+Architecture Sub-Agent (called 2a. "Architecture Sub"):
+- Generate high-level and component-level architecture diagrams.
+- Define system boundaries and main components.
+Data Flow Sub-Agent (called 2b. Data Flow Sub"):
+- Map out the flow of data: Kafka → Enrichment → Eligibility → XML → SFTP.
+- Specify how data moves between components.
+Integration Sub-Agent (called 2c. Integration Sub"):
+- Define integration points with external systems (Kafka, DB, SFTP, Prometheus).
+- Specify API contracts and data exchange formats.
+Validation Rules Sub-Agent (called 2d. Validation Rules Sub"):
+- Document validation and compliance logic.
+- Specify how and where validation is enforced in the flow.
+
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
             "tools": ["2a. Architecture Sub","2b. Data Flow Sub","2c. Integration Sub","2d. Validation Rules Sub"]
-        # "3. Code Generation","2b Data Flow Sub","2c Integration Sub","2d Validation Rules Sub"
         },
 
         {
