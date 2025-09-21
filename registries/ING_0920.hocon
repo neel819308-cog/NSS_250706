@@ -112,16 +112,16 @@ with clear examples of the choices available.
 
 Provide the users with necessary URLs to help them with their query.
             """,
-            "tools": ["1 Requirement Ingestion"]
+            "tools": ["1. Requirement Ingestion"]
         },
 
         {
-            "name": "1 Requirement Ingestion",
+            "name": "1. Requirement Ingestion",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is 1 Requirement Ingestion.
-Purpose: Retrieve and summarise MiFIR reporting obligations and technical requirements.
+The name of this app is 1. Requirement Ingestion.
+**Purpose:** Retrieve and summarise MiFIR reporting obligations and technical requirements.
 Actions:
 - Use Agentic AI to fetch AFM MiFIR rules, mandatory fields, XML schema, and validation rules.
 - Output a structured requirements document, per asset class
@@ -138,19 +138,19 @@ Actions:
             "instructions": """
 {instructions_prefix}
 The name of this app is 2. Technical Design.
-Purpose: Translate requirements into a technical and architectural design.
-Output: Technical design document and diagrams and relay and 
-share to sub agents to define the requirements. These agents are constrcutred with the follow focus and remit:
-Architecture Sub-Agent (called 2a. "Architecture Sub"):
+**Purpose:** Translate requirements into a technical and architectural design.
+Output: Technical design document and diagrams. Relay and 
+share to sub agents to define the requirements. These agents are are constructed with the following focus and remit:
+Architecture Sub-Agent (called "2a. Architecture Sub"):
 - Generate high-level and component-level architecture diagrams.
 - Define system boundaries and main components.
-Data Flow Sub-Agent (called 2b. Data Flow Sub"):
+Data Flow Sub-Agent (called "2b. Data Flow Sub"):
 - Map out the flow of data: Kafka → Enrichment → Eligibility → XML → SFTP.
 - Specify how data moves between components.
-Integration Sub-Agent (called 2c. Integration Sub"):
+Integration Sub-Agent (called "2c. Integration Sub"):
 - Define integration points with external systems (Kafka, DB, SFTP, Prometheus).
 - Specify API contracts and data exchange formats.
-Validation Rules Sub-Agent (called 2d. Validation Rules Sub"):
+Validation Rules Sub-Agent (called "2d. Validation Rules Sub"):
 - Document validation and compliance logic.
 - Specify how and where validation is enforced in the flow.
 
@@ -167,12 +167,9 @@ Validation Rules Sub-Agent (called 2d. Validation Rules Sub"):
             "instructions": """
 {instructions_prefix}
 The name of this app is 2a. Architecture Sub.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Generate high-level and component-level architecture diagrams.
+- Define system boundaries and main components.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -185,12 +182,9 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 2b. Data Flow Sub.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Map out the flow of data: Kafka to Enrichment to Eligibility to XML to SFTP.
+- Specify how data moves between components.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -203,12 +197,9 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 2c. Integration Sub.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Define integration points with external systems (Kafka, DB, SFTP, Prometheus).
+- Specify API contracts and data exchange formats.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -221,12 +212,10 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 2d. Validation Rules Sub.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Document validation and compliance logic.
+- Specify how and where validation is enforced in the flow.
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -239,12 +228,34 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3. Code Generation.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+Purpose: Produce modular, production-ready Java code for each component.
+Output: Java codebase with unit tests, logging, and monitoring. Relay and 
+share to sub agents to define the requirements and report back. These agents are constructed with the following focus and remit:
+Enrichment Sub-Agent (called "3aa. Enrichment"):
+-	Enrich parsed data with static data from a relational database.
+FpML Parser Sub-Agent (called "3ab. FpML Parser"):
+-	Parse FpML messages into domain objects.
+Kafka Consumer Sub-Agent (called "3ac. Kafka Consumer"):
+-	Generate code to read FpML messages from a Kafka topic.
+
+XML Generator Sub-Agent (called "3ba. XML Generator"):
+-	Generate XML reports from enriched trade data according to the AFM MiFIR schema.
+-	Validate XML before submission.
+Eligibility Logic Sub-Agent (called "3bb. Eligibility Logic"):
+-	Assess MiFIR eligibility based on regulatory rules.
+
+SFTP Client Sub-Agent (called "3ca. SFTP Client"):
+-	Submit XML files via SFTP to an ARM endpoint.
+-	Implement retry logic and log submission results.
+
+Logging & Monitoring Sub-Agent (called "3da. Log & Monitor""):
+-	Implement structured logging for all exceptions.
+-	Expose metrics to Prometheus for monitoring.
+
+Unit Testing Sub-Agent (called "3ea. Unit Testing"):
+-	Generate unit tests for all major components to ensure code quality.
+
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -257,12 +268,8 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3aa. Enrichment.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Enrich parsed data with static data from a relational database.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -275,12 +282,8 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3ab. FpML Parser.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Parse FpML messages into domain objects.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -293,12 +296,8 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3ac. Kafka Consumer.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Generate code to read FpML messages from a Kafka topic.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -311,12 +310,13 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 4. Validaton & Enrich.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Purpose:** Ensure all MiFIR-required fields are present and enriched.
+**Output & Actions:**
+- Compare FpML input with MiFIR requirements.
+- Identify and fetch missing fields from static data (e.g., LEI, trading capacity).
+- Output enriched trade data and a validation report.
+
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -329,12 +329,9 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3ba. XML Generator.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Generate XML reports from enriched trade data according to the AFM MiFIR schema.
+- Validate XML before submission.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -347,12 +344,8 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3bb. Eligibility Logic.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Assess MiFIR eligibility based on regulatory rules.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -365,12 +358,13 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 5. XML Compliance.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Purpose:** Validate generated XML against the AFM MiFIR schema.
+**Output & Actions:**
+- Run schema validation on generated XML.
+- Suggest and apply corrections for non-compliance.
+- Output validated, compliant XML files.
+
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -383,12 +377,9 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3ca. SFTP Client.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Submit XML files via SFTP to an ARM endpoint.
+- Implement retry logic and log submission results.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -401,12 +392,13 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 6. Submission.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Purpose:** Securely submit XML reports via SFTP and log results.
+**Output & Actions:**
+- Handle SFTP submission with retry and status logging.
+- Store submission results and XML in the database.
+- Output submission logs and status reports.
+
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -419,12 +411,9 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3da. Log & Monitor.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Implement structured logging for all exceptions.
+- Expose metrics to Prometheus for monitoring.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -437,12 +426,13 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 7. Monitor & ErrorHand.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Purpose:** Ensure robust error handling, logging, and monitoring.
+**Output & Actions:**
+- Implement structured logging for all exceptions.
+- Expose metrics to Prometheus/Grafana.
+- Output monitoring dashboards and error logs.
+
+
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
@@ -455,17 +445,29 @@ retrieving applicable policies, and ensuring consistent application across scena
             "instructions": """
 {instructions_prefix}
 The name of this app is 3ea. Unit Testing.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
+**Output & Actions:**
+- Generate unit tests for all major components to ensure code quality.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
             "tools": ["8. DEPLOYMENT"]
         },  
 
+        {
+            "name": "8. DEPLOYMENT",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is 8. DEPLOYMENT.
+**Purpose:** Prepare the solution for deployment.
+**Output & Actions:**
+- Ensure code is Azure DevOps pipeline compatible.
+- Package and document deployment steps.
+- Output deployment scripts and documentation.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": [""]
+        },  
     ]
 }
