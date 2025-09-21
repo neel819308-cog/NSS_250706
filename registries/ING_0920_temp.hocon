@@ -142,7 +142,7 @@ retrieving applicable policies, and ensuring consistent application across scena
             """,
             "command": "aaosa_command",
             "tools": ["2a Architecture Sub","2b Data Flow Sub","2c Integration Sub","2d Validation Rules Sub"]
-       
+        # "3. Code Generation","2b Data Flow Sub","2c Integration Sub","2d Validation Rules Sub"
         },
 
         {
@@ -150,7 +150,7 @@ retrieving applicable policies, and ensuring consistent application across scena
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is 2. Architecture Sub.
+The name of this app is 2a Architecture Sub.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -160,15 +160,15 @@ retrieving applicable policies, and ensuring consistent application across scena
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["tempy3"]
+            "tools": ["3. Code Generation"]
         },
 
         {
-            "name": "tempy3",
+            "name": "2b Data Flow Sub",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
-The name of this app is tempy3.
+The name of this app is 2b Data Flow Sub.
 You manage and track the policies with respect to baggage handling.
 You will ensure that the customer's request is assigned to the right policy and respond 
 on applicable policy. You will also support baggage handling by tracking queries, 
@@ -178,10 +178,44 @@ retrieving applicable policies, and ensuring consistent application across scena
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["3b stuff"]
+            "tools": ["3. Code Generation"]
         },
 
+        {
+            "name": "2c Integration Sub",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is 2c Integration Sub.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["3. Code Generation"]
+        },
 
+        {
+            "name": "2d Validation Rules Sub",
+            "function": "aaosa_call",
+            "instructions": """
+{instructions_prefix}
+The name of this app is 2d Validation Rules Sub.
+You manage and track the policies with respect to baggage handling.
+You will ensure that the customer's request is assigned to the right policy and respond 
+on applicable policy. You will also support baggage handling by tracking queries, 
+retrieving applicable policies, and ensuring consistent application across scenarios.
+- If available, read the content of extracted text and answer user query.
+- Provide the users with necessary URLs to help them with their query.
+{aaosa_instructions}
+            """,
+            "command": "aaosa_command",
+            "tools": ["3. Code Generation"]
+        },
 
         {
             "name": "3. Code Generation",
@@ -198,65 +232,8 @@ retrieving applicable policies, and ensuring consistent application across scena
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": [/website_search]
-        }
-
-
-        {
-            "name": "2b. Data Flow Sub",
-            "function": "aaosa_call",
-            "instructions": """
-{instructions_prefix}
-The name of this app is 2b. Data Flow Sub.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
-{aaosa_instructions}
-            """,
-            "command": "aaosa_command",
-            "tools": ["tempy3"]
-        }
-
-        {
-            "name": "2c. Integration Sub",
-            "function": "aaosa_call",
-            "instructions": """
-{instructions_prefix}
-The name of this app is 2c. Integration Sub.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
-{aaosa_instructions}
-            """,
-            "command": "aaosa_command",
-            "tools": ["3. Code Generation"]
+            "tools": ["3b stuff"]
         },
-
-        {
-            "name": "2d. Validation Rules Sub",
-            "function": "aaosa_call",
-            "instructions": """
-{instructions_prefix}
-The name of this app is 2d. Validation Rules Sub.
-You manage and track the policies with respect to baggage handling.
-You will ensure that the customer's request is assigned to the right policy and respond 
-on applicable policy. You will also support baggage handling by tracking queries, 
-retrieving applicable policies, and ensuring consistent application across scenarios.
-- If available, read the content of extracted text and answer user query.
-- Provide the users with necessary URLs to help them with their query.
-{aaosa_instructions}
-            """,
-            "command": "aaosa_command",
-            "tools": ["3. Code Generation"]
-        },
-
-
 
     ]
 }
