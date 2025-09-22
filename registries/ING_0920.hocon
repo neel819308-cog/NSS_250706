@@ -7,6 +7,9 @@
 # Purchase of a commercial license is mandatory for any use of the
 # neuro-san-studio SDK Software in commercial settings.
 #
+# README:  ./docs/examples/ING_0920.md
+# with attached imagesa: ./docs/images/ING_0920*  
+#
 {
     "llm_config": {
         "model_name": "azure-gpt-4o",
