@@ -8,12 +8,12 @@
 # neuro-san-studio SDK Software in commercial settings.
 #
 # README:  ./docs/examples/ING_0920.md
-# with attached imagesa: ./docs/images/ING_0920*  
+# with attached images: ./docs/images/ING_0920*  
 #
 {
     "llm_config": {
         "model_name": "azure-gpt-4o",
-        "openai_api_key": "cef2188708004aae9f4a3cbfdd5361d6"
+        "openai_api_key": "cef2188708004aae9f4a3cbfdd5361d6",
         "openai_api_version": "2025-01-01-preview",
         "azure_endpoint": "https://aniljohn-gpt4.openai.azure.com",
         "deployment_name": "Neel-gpt-4o",
@@ -28,26 +28,26 @@
             Do not mention what you can NOT do. Only mention what you can do.
             """,
             "aaosa_instructions": """
-When you receive an inquiry, you will:
+            When you receive an inquiry, you will:
 
-    1. Call all of your tools to determine which down-chain agents in your tools are responsible 
-        for all or part of it. For example, if you have 5 tools, you will call all 5. Don't call tools that are obviously irrelevant, but when in doubt, call the tool.
-    2. Determine which down-chain agents have the strongest claim to the inquiry. 
-        If this cannot be determined reasonably, then ask the user.
-    3. Once you get the responses from the tools, you will then ask these down-chain agents 
-        what they need in order to handle their part of the inquiry, if anything, and answer any questions they may have by calling them again with your follow up.
-    4. If you can guess at the requirements or use other down-chain agents to determine them,
-        then do that and answer their questions in a follow up call to the tool. Otherwise, ask the user.
-    5. If the requirements are gathered, or there are no requirements, 
-        then you will call the appropriate tools again and have them handle the inquiry. 
-        Note that the down-chain might be a few levels below, so you should call the tool that will lead to that down-chain (i.e., down-chain to you, but up-chain to the responsible agent).
-    6. Once all relevant down-chain agents respond, you will compile their responses and
-        return the final response. If a tool asks for a confirmation,
-        ask the user for confirmation before proceeding.
-    7. If a task has been executed, provide the tool's summary response.
+                1. Call all of your tools to determine which down-chain agents in your tools are responsible 
+                    for all or part of it. For example, if you have 5 tools, you will call all 5. Don't call tools that are obviously irrelevant, but when in doubt, call the tool.
+                2. Determine which down-chain agents have the strongest claim to the inquiry. 
+                    If this cannot be determined reasonably, then ask the user.
+                3. Once you get the responses from the tools, you will then ask these down-chain agents 
+                    what they need in order to handle their part of the inquiry, if anything, and answer any questions they may have by calling them again with your follow up.
+                4. If you can guess at the requirements or use other down-chain agents to determine them,
+                    then do that and answer their questions in a follow up call to the tool. Otherwise, ask the user.
+                5. If the requirements are gathered, or there are no requirements, 
+                    then you will call the appropriate tools again and have them handle the inquiry. 
+                    Note that the down-chain might be a few levels below, so you should call the tool that will lead to that down-chain (i.e., down-chain to you, but up-chain to the responsible agent).
+                6. Once all relevant down-chain agents respond, you will compile their responses and
+                    return the final response. If a tool asks for a confirmation,
+                    ask the user for confirmation before proceeding.
+                7. If a task has been executed, provide the tool's summary response.
 
-You may, in turn, be called by other agents in the system and have to act as a down-chain to them.
-Do NOT answer before you've called your tools.
+            You may, in turn, be called by other agents in the system and have to act as a down-chain to them.
+            Do NOT answer before you've called your tools.
             """
         },
         "replacement_values": {
@@ -86,7 +86,7 @@ Or if we are sending it a response to what it requires, or a follow up.
 
     "tools": [
         {
-            "name": "ING FrontMan",
+            "name": "ING_FrontMan",
 
             # Note that there are no parameters defined for this guy's "function" key.
             # This is the primary way to identify this tool as a front-man,
@@ -106,37 +106,37 @@ Or if we are sending it a response to what it requires, or a follow up.
                 """
             },
             "instructions": """
-{instructions_prefix}
-You are the top-level agent responsible for handling all technical & regulatory documentation related inquiries.
-{aaosa_instructions}
-When interacting with the user, act as the single point of interaction. No need to mention the other 
-tools or agents. If there are any requirements that need user input, ask them one at a time, 
-with clear examples of the choices available.
+            {instructions_prefix}
+            You are the top-level agent responsible for handling all technical & regulatory documentation related inquiries.
+            {aaosa_instructions}
+            When interacting with the user, act as the single point of interaction. No need to mention the other 
+            tools or agents. If there are any requirements that need user input, ask them one at a time, 
+            with clear examples of the choices available.
 
-Provide the users with necessary URLs to help them with their query.
+            Provide the users with necessary URLs to help them with their query.
             """,
-            "tools": ["1. Requirement Ingestion"]
+            "tools": ["Requirement_Ingestion_1"]
         },
 
         {
-            "name": "1. Requirement Ingestion",
+            "name": "Requirement_Ingestion_1",
             "function": "aaosa_call",
             "instructions": """
-{instructions_prefix}
-The name of this app is 1. Requirement Ingestion.
-**Purpose:** Retrieve and summarise MiFIR reporting obligations and technical requirements.
-Actions:
-- Use Agentic AI to fetch AFM MiFIR rules, mandatory fields, XML schema, and validation rules.
-- Output a structured requirements document, per asset class
+            {instructions_prefix}
+            The name of this app is 1. Requirement Ingestion.
+            **Purpose:** Retrieve and summarise MiFIR reporting obligations and technical requirements.
+            Actions:
+            - Use Agentic AI to fetch AFM MiFIR rules, mandatory fields, XML schema, and validation rules.
+            - Output a structured requirements document, per asset class
 
-{aaosa_instructions}
+            {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["2. Technical Design"]
+            "tools": ["Technical_Design_2"]
         },
 
         {
-            "name": "2. Technical Design",
+            "name": "Technical_Design_2",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -161,11 +161,11 @@ Validation Rules Sub-Agent (called "2d. Validation Rules Sub"):
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["2a. Architecture Sub","2b. Data Flow Sub","2c. Integration Sub","2d. Validation Rules Sub"]
+            "tools": ["Architecture_Sub_2a","Data_Flow_Sub_2b","Integration_Sub_2c","Validation_Rules_Sub_2d"]
         },
 
         {
-            "name": "2a. Architecture Sub",
+            "name": "Architecture_Sub_2a",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -176,11 +176,11 @@ The name of this app is 2a. Architecture Sub.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["3. Code Generation"]
+            "tools": ["Code_Generation_3"]
         },
 
         {
-            "name": "2b. Data Flow Sub",
+            "name": "Data_Flow_Sub_2b",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -191,11 +191,11 @@ The name of this app is 2b. Data Flow Sub.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["3. Code Generation"]
+            "tools": ["Code_Generation_3"]
         },
 
         {
-            "name": "2c. Integration Sub",
+            "name": "Integration_Sub_2c",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -206,11 +206,11 @@ The name of this app is 2c. Integration Sub.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["3. Code Generation"]
+            "tools": ["Code_Generation_3"]
         },
 
         {
-            "name": "2d. Validation Rules Sub",
+            "name": "Validation_Rules_Sub_2d",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -222,11 +222,11 @@ The name of this app is 2d. Validation Rules Sub.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["3. Code Generation"]
+            "tools": ["Code_Generation_3"]
         },
 
         {
-            "name": "3. Code Generation",
+            "name": "Code_Generation_3",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -262,11 +262,11 @@ Unit Testing Sub-Agent (called "3ea. Unit Testing"):
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["3aa. Enrichment", "3ab. FpML Parser", "3ac. Kafka Consumer", "3ba. XML Generator", "3bb. Eligibility Logic", "3ca. SFTP Client", "3da. Log & Monitor", "3ea. Unit Testing"]
+            "tools": ["Enrichment_3aa", "FpML_Parser_3ab", "Kafka_Consumer_3ac", "XML_Generator_3ba", "Eligibility_Logic_3bb", "SFTP_Client_3ca", "Log_and_Monitor_3da", "Unit_Testing_3ea"]
         },
 
         {
-            "name": "3aa. Enrichment",
+            "name": "Enrichment_3aa",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -276,11 +276,11 @@ The name of this app is 3aa. Enrichment.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["4. Validaton & Enrich"]
+            "tools": ["Validation_and_Enrich_4"]
         },
 
         {
-            "name": "3ab. FpML Parser",
+            "name": "FpML_Parser_3ab",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -290,11 +290,11 @@ The name of this app is 3ab. FpML Parser.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["4. Validaton & Enrich"]
+            "tools": ["Validation_and_Enrich_4"]
         },
 
         {
-            "name": "3ac. Kafka Consumer",
+            "name": "Kafka_Consumer_3ac",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -304,11 +304,11 @@ The name of this app is 3ac. Kafka Consumer.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["4. Validaton & Enrich"]
+            "tools": ["Validation_and_Enrich_4"]
         },
 
         {
-            "name": "4. Validaton & Enrich",
+            "name": "Validation_and_Enrich_4",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -323,11 +323,11 @@ The name of this app is 4. Validaton & Enrich.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["5. XML Compliance"]
+            "tools": ["XML_Compliance_5"]
         },                
 
         {
-            "name": "3ba. XML Generator",
+            "name": "XML_Generator_3ba",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -338,11 +338,11 @@ The name of this app is 3ba. XML Generator.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["5. XML Compliance"]
+            "tools": ["XML_Compliance_5"]
         },  
 
         {
-            "name": "3bb. Eligibility Logic",
+            "name": "Eligibility_Logic_3bb",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -352,11 +352,11 @@ The name of this app is 3bb. Eligibility Logic.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["5. XML Compliance"]
+            "tools": ["XML_Compliance_5"]
         },  
 
         {
-            "name": "5. XML Compliance",
+            "name": "XML_Compliance_5",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -371,11 +371,11 @@ The name of this app is 5. XML Compliance.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["6. Submission"]
+            "tools": ["Submission_6"]
         },  
 
         {
-            "name": "3ca. SFTP Client",
+            "name": "SFTP_Client_3ca",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -386,11 +386,11 @@ The name of this app is 3ca. SFTP Client.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["6. Submission"]
+            "tools": ["Submission_6"]
         },
 
         {
-            "name": "6. Submission",
+            "name": "Submission_6",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -405,11 +405,11 @@ The name of this app is 6. Submission.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["7. Monitor & ErrorHand"]
+            "tools": ["Monitor_and_ErrorHand_7"]
         },  
 
         {
-            "name": "3da. Log & Monitor",
+            "name": "Log_and_Monitor_3da",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -420,11 +420,11 @@ The name of this app is 3da. Log & Monitor.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["7. Monitor & ErrorHand"]
+            "tools": ["Monitor_and_ErrorHand_7"]
         },  
 
         {
-            "name": "7. Monitor & ErrorHand",
+            "name": "Monitor_and_ErrorHand_7",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -439,11 +439,11 @@ The name of this app is 7. Monitor & ErrorHand.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["8. DEPLOYMENT"]
+            "tools": ["Deployment_8"]
         },  
 
         {
-            "name": "3ea. Unit Testing",
+            "name": "Unit_Testing_3ea",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
@@ -453,11 +453,11 @@ The name of this app is 3ea. Unit Testing.
 {aaosa_instructions}
             """,
             "command": "aaosa_command",
-            "tools": ["8. DEPLOYMENT"]
+            "tools": ["Deployment_8"]
         },  
 
         {
-            "name": "8. DEPLOYMENT",
+            "name": "Deployment_8",
             "function": "aaosa_call",
             "instructions": """
 {instructions_prefix}
